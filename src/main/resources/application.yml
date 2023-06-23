@@ -1,0 +1,17 @@
+server:
+  port: 8081
+--- # Thymeleaf
+spring:
+  thymeleaf:
+    enabled: true
+    prefix : classpath:/templates/
+    suffix : .html
+    cache : false
+
+--- # MYSQL
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/danmun2?characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: 1234

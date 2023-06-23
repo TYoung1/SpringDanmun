@@ -1,0 +1,171 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+    color: #000;
+}
+ul{
+    list-style: none;
+}
+button{
+    cursor: pointer;
+}
+nav{
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid #B0E0E6;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 50px;
+    line-height: 50px;   
+}
+nav li{
+    float: left;
+    margin-right: 15px;
+}
+nav li a{
+    color: #888;
+    font-weight: 700;
+}
+.logo{
+    color: #B0C4DE;
+}
+.wrapper{
+    width: 1850px;
+    margin: 0 auto;
+}
+.container{
+    display: flex;
+}
+.left{
+    width: 70%;
+    border: 3px solid #6495ED;
+    height: 800px;
+    border-radius: 25px;
+    position: relative;
+}
+.delete{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: none;
+    position: absolute;
+    background: #CC9999;
+    color: #fff;
+    box-shadow:0px 4px 0px rgba(0,0,0,0.5);
+    right: 30px;
+    top: 0;
+}
+table{
+    width: 80%;
+    height: 660PX;
+    margin: 0 auto;
+}
+.left h1{
+    text-align: center;
+    color: #B0C4DE;
+}
+table thead{
+    height: 40px;
+}
+table tbody tr{
+    height: 40px;
+    text-align: center;
+}
+.right{
+    width: 30%;
+    height:800px;
+    padding-left: 20px;
+}
+.right > div{
+    border-radius: 25px;
+}
+.r_top{
+    width: 100%;
+    height: 380px;
+    border: 3px solid #6495ED;
+    text-align: center;
+    padding: 60px;
+}
+.r_top h2, .r_bottom h2{
+    color: #B0C4DE;
+    text-align:center;
+}
+
+.info{
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 20px;
+    height: 200px;
+}
+.game{
+	color:#6A5ACD;
+	font-size:18px;
+}
+.info p{
+    padding: 10px 0;
+}
+.else{
+    width: 300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #888;
+    font-weight: bold;
+}
+.r_bottom{
+    margin-top: 40px;
+    width: 100%;
+    height: 380px;
+    border: 3px solid #6495ED;
+    padding: 60px;
+}
+.r_bottom input{
+    width: 100%;
+    height: 50px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid #000;
+    background: #fff;
+    margin: 15px 0;
+}
+.r_bottom input:focus{
+    outline: none;
+    border: 3px solid #CC9999;
+}
+.r_bottom button{
+    margin-top:15px;
+    width: 100%;
+    height: 50px;
+    background: #B0C4DE;
+    border: 1px solid #e8e8e8;
+}
+.r_bottom h3{
+	margin-top:50px;
+	display:block;
+	width:100%;
+	color:#cc9999;
+	text-align:center;
+}
+.page{
+	width:200px;
+	margin:0 auto;
+	margin-top:20px;
+	text-align:center;
+	font-size:17px;
+	font-weight:700;
+}
+.page ul{
+    list-style: none;
+    display: flex;
+    padding-left: 15px;
+    justify-content:center;
+}
+.page ul li{
+	padding: 0 10px;
+}
