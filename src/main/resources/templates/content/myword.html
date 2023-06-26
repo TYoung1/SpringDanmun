@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/default_layout}">
+
+<th:block layout:fragment="head">
+  <title>Spring Boot</title>
+
+  <link th:href="@{/css/myword.css}" rel="stylesheet" />
+</th:block>
+
+<body>
+
+<th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block>
+<div class="main">
+  <div class="wrapper">
+    <div class="container">
+      <div class="left">
+        <form action="deletemine" method="post" onsubmit="return re()">
+          <input type="hidden" name="id" value="<%= _id %>"/>
+          <button class="delete" type="submit">Delete</button>
+          <table>
+            <h1>My Word</h1>
+            <thead>
+            <tr>
+              <th style="background-color: #CCCCFF; text-align: center;">번호</th>
+              <th style="background-color: #CCCCFF; text-align: center;">단어</th>
+              <th style="background-color: #CCCCFF; text-align: center;">의미</th>
+              <th style="background-color: #CCCCFF; text-align: center;">체크</th>
+            </tr>
+            </thead>
+            <tbody th:each="list,i : ${myList}">
+              <tr>
+                <td th:text="${i}"></td>
+                <td th:text="${list.getWord}"></td>
+                <td th:text="${list.getMean}"></td>
+                <td><input type="checkbox" name="del" th:value="${list.getSeq}"/></td>
+              </tr>
+
+            </tbody>
+          </table>
+        </form>
+        <div class="page">
+          <ul class="page">
+            <th:block th:each="pageNum : ${#numbers.sequence(startpage, endpage)}" th:var="pageNum">
+              <th:block>
+                <th:block th:if="${pageNum != nowpage}">
+                  <li><a href="/main/board/${board.boardType}/?page=${pageNum-1}" th:text="${pageNum}"></a></li>
+                </th:block>
+                <th:block th:if="${pageNum == nowpage}">
+                  <li><a href="/main/board/${boardType}?page=${pageNum-1}"><strong
+                          style="color:red" th:text="${pageNum}"></strong></a></li>
+                </th:block>
+              </th:block>
+            </th:block>
+          </ul>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="r_top">
+          <h2><span th:text="${session.user.userName}"></span>님 환영합니다</h2>
+
+          <div class="info">
+            <a href="minitest.jsp" class="game">머리식히러가기</a>
+            <p>My Word 에 저장된 단어 : <span><%= count %>개</span></p>
+          </div>
+          <div class="else">
+            <a href="logout.jsp">로그아웃</a>
+            <a href="#">회원탈퇴</a>
+          </div>
+        </div>
+        <div class="r_bottom">
+          <form action ="addone" method="post">
+            <h2>More Word</h2>
+            <input type="text" name="addword" placeholder="단어를 입력해주세요"><br>
+            <button type="submit">추가</button>
+            <h3><%= message %>.</h3>
+            <input type="hidden" name="id" value="<%= _id %>"/>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

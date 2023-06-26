@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/default_layout}">
+
+<th:block layout:fragment="head">
+    <title>Spring Boot</title>
+
+
+    <link th:href="@{/css/type.css}" rel="stylesheet"/>
+</th:block>
+
+<body>
+
+<th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block>
+<div class="middle">
+    <div class="wrapper">
+
+    </div>
+</div>
+
+<div class="content">
+    <div class="wrapper2">
+
+        <div class="word" th:each="list : ${typelist}">
+            <h1 th:text="${list.getWord}"></h1><form method="post" action="addatlist" onsubmit="return chkid()"><span class="more"><button type="submit" class="getAdd">+</button></span>
+				<input type="hidden" name="addword" th:value="${list.getSeq}">
+				 <th:block th:if="${session.user != null}">
+				 <input type="hidden" name="id" class="idval" th:value="${session.user.userId}">
+                 </th:block>
+                  <th:block th:if="${session.user == null}">
+                  <input type="hidden" name="id" class="idval" value="null">
+                  </th:block>
+				 <input type="hidden" name="type" th:value="${type}">
+				 </form>
+            <h2>뜻 : <span id="mean" th:text="${list.getMean}"></span></h2>
+        </div>
+
+    </div>
+</div>
+<script th:src="@{/js/add.js}"></script>
+</body>
+
+</html>

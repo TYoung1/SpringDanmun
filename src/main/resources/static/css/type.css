@@ -75,6 +75,7 @@ nav li a{
     border-radius: 15px;
     padding: 10px;
     margin: 15px 0;
+    position: relative;
 }
 .word button{
 	font-size:30px;
@@ -83,7 +84,9 @@ nav li a{
 	cursor:pointer;	
 }
 .more{
-    float: right;
+    position:absolute;
+    right:5px;
+    top:5px;
 }
 #mean{
 	font-size:20px;
