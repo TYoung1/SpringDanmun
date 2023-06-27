@@ -18,8 +18,8 @@
   <div class="wrapper">
     <div class="container">
       <div class="left">
-        <form action="deletemine" method="post" onsubmit="return re()">
-          <input type="hidden" name="id" value="<%= _id %>"/>
+        <form action="/deletemine" method="post" onsubmit="return re()">
+          <input type="hidden" name="id" th:value="${session.user.userId}"/>
           <button class="delete" type="submit">Delete</button>
           <table>
             <h1>My Word</h1>
@@ -31,12 +31,12 @@
               <th style="background-color: #CCCCFF; text-align: center;">체크</th>
             </tr>
             </thead>
-            <tbody th:each="list,i : ${myList}">
+            <tbody th:each="list, i : ${myList}" >
               <tr>
-                <td th:text="${i}"></td>
+                <td th:text="${i.index+1}"></td>
                 <td th:text="${list.getWord}"></td>
                 <td th:text="${list.getMean}"></td>
-                <td><input type="checkbox" name="del" th:value="${list.getSeq}"/></td>
+                <td><input type="checkbox" name="deleteWord" th:value="${list.getSeq}"/></td>
               </tr>
 
             </tbody>
@@ -47,10 +47,10 @@
             <th:block th:each="pageNum : ${#numbers.sequence(startpage, endpage)}" th:var="pageNum">
               <th:block>
                 <th:block th:if="${pageNum != nowpage}">
-                  <li><a href="/main/board/${board.boardType}/?page=${pageNum-1}" th:text="${pageNum}"></a></li>
+                  <li><a th:href="@{/myword(page=${pageNum-1})}" th:text="${pageNum}"></a></li>
                 </th:block>
                 <th:block th:if="${pageNum == nowpage}">
-                  <li><a href="/main/board/${boardType}?page=${pageNum-1}"><strong
+                  <li><a th:href="@{/myword(page=${pageNum-1})}"><strong
                           style="color:red" th:text="${pageNum}"></strong></a></li>
                 </th:block>
               </th:block>
@@ -64,28 +64,28 @@
           <h2><span th:text="${session.user.userName}"></span>님 환영합니다</h2>
 
           <div class="info">
-            <a href="minitest.jsp" class="game">머리식히러가기</a>
-            <p>My Word 에 저장된 단어 : <span><%= count %>개</span></p>
+            <a th:href="@{/minigame}" class="game">머리식히러가기</a>
+            <p>My Word 에 저장된 단어 : <span th:text="${count} + '개'"></span></p>
           </div>
           <div class="else">
-            <a href="logout.jsp">로그아웃</a>
+            <a href="/auth/logout">로그아웃</a>
             <a href="#">회원탈퇴</a>
           </div>
         </div>
         <div class="r_bottom">
-          <form action ="addone" method="post">
+          <form action ="/addone" method="post">
             <h2>More Word</h2>
-            <input type="text" name="addword" placeholder="단어를 입력해주세요"><br>
+            <input type="text" name="addWord" placeholder="단어를 입력해주세요"><br>
             <button type="submit">추가</button>
-            <h3><%= message %>.</h3>
-            <input type="hidden" name="id" value="<%= _id %>"/>
+            <h3 th:text="${message}"></h3>
+            <input type="hidden" name="id" th:value="${session.user.userId}"/>
 
           </form>
         </div>
       </div>
     </div>
   </div>
-
+  <script th:src="@{/js/add.js}"></script>
 </div>
 </body>
 </html>

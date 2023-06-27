@@ -13,6 +13,7 @@ public class AddWordDto {
    private int addWord;
    private String id;
    private String key;
+   private int type;
 
    public MyWord toEntity() {
       MyWord entity = new MyWord();

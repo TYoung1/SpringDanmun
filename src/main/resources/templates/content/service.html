@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/default_layout}">
+
+<th:block layout:fragment="head">
+  <title>Spring Boot</title>
+
+
+  <link th:href="@{/css/findinfo.css}" rel="stylesheet"/>
+</th:block>
+
+<body>
+
+<th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block>
+<div class="main">
+  <div class="wrapper">
+    <div class="form">
+      <div class="left">
+        <h2>아이디 찾기</h2>
+        <form action="/findid" method="post">
+          <label>이름입력</label><br>
+          <input type="text" name ="userName"><br>
+          <label>나이입력</label><br>
+          <input type="text" name ="userAge"><br>
+
+          <button type="submit">찾기</button>
+        </form>
+        <h2 class="result" th:text="아이디 = +'${userid}"></h2>
+      </div>
+      <div class="right">
+        <h2>비밀번호 찾기</h2>
+        <form action="findpw" method="post">
+          <label>아이디입력</label><br>
+          <input type="text" name ="userId"><br>
+          <label>이름입력</label><br>
+          <input type="text" name ="userName"><br>
+          <label>나이입력</label><br>
+          <input type="text" name ="userAge"><br>
+          <button type="submit">찾기</button>
+        </form>
+        <h2 class="result" th:text="새비밀번호 = + '${userpw}"></h2>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

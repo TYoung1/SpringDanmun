@@ -1,9 +1,6 @@
 package com.example.Danmun.controller;
 
-import com.example.Danmun.dto.ResponseDto;
-import com.example.Danmun.dto.SignInDto;
-import com.example.Danmun.dto.SignInResponseDto;
-import com.example.Danmun.dto.SignUpDto;
+import com.example.Danmun.dto.*;
 import com.example.Danmun.entity.User;
 import com.example.Danmun.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,4 +39,19 @@ public class AuthController {
         authService.join(dto);
         return "redirect:/home";
     }
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/home";
+    }
+    @GetMapping("/service")
+    public String userService(){
+        return "content/service";
+    }
+//    @PostMapping("/findid")
+//    public String findId(FindInfoDto dto){
+//        int age = dto.getUserAge();
+//        String name = dto.getUserName();
+//
+//    }
 }

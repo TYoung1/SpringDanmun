@@ -1,6 +1,7 @@
 package com.example.Danmun.service;
 
 import com.example.Danmun.dto.AddWordDto;
+import com.example.Danmun.dto.DeleteDto;
 import com.example.Danmun.dto.ResponseDto;
 import com.example.Danmun.entity.MyWord;
 import com.example.Danmun.entity.Word;
@@ -47,7 +48,7 @@ public class HomeService {
     }
 
     public List<Word> getTypeWord(int type){
-        List<Word> list = wordRepository.findByType(type);
+            List<Word> list = wordRepository.findByType(type);
         return list;
     }
     public Word randomAnswer(){
@@ -55,8 +56,42 @@ public class HomeService {
         return word;
     }
     public Page<Word> myList(String userId, Pageable pageable){
-        System.out.println(userId);
-        return myWordRepository.findMyList(userId,pageable);
+        return wordRepository.findMyList(userId,pageable);
+    }
+    public void deleteMyWord(DeleteDto dto){
+        List<Integer> type = dto.getDeleteWord();
+        String id = dto.getId();
+        myWordRepository.deleteByUserIdAndSeqIn(id,type);
+    }
+    public String addOne(String word,String userId){
+        try{
+            int seq = wordRepository.findSequence(word);
+            boolean exists = myWordRepository.existsBySeq(seq);
+            if(exists == true){
+                return "이미 존재하는 단어 또는 존재하지않는 단어입니다.";
+            }else{
+                myWordRepository.saveWord(userId,seq);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return "이미 존재하는 단어 또는 존재하지않는 단어입니다.";
+        }
+            return "";
+    }
+    public String addList(List<Integer>list,String userid){
+        for (Integer word : list) {
+            if(myWordRepository.existsByUserIdAndSeq(userid,word) == true){
+                return "이미 저장되어있는 단어가 포함되었습니다.";
+            }else{
+                try{
+                    System.out.println(word==1);
+                    myWordRepository.saveWord(userid,word);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
 
+            }
+        }
+        return "";
     }
 }

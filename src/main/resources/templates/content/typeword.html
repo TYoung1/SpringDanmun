@@ -14,18 +14,13 @@
 <body>
 
 <th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block>
-<div class="middle">
-    <div class="wrapper">
-
-    </div>
-</div>
 
 <div class="content">
     <div class="wrapper2">
 
         <div class="word" th:each="list : ${typelist}">
             <h1 th:text="${list.getWord}"></h1><form method="post" action="addatlist" onsubmit="return chkid()"><span class="more"><button type="submit" class="getAdd">+</button></span>
-				<input type="hidden" name="addword" th:value="${list.getSeq}">
+				<input type="hidden" name="addWord" th:value="${list.getSeq}">
 				 <th:block th:if="${session.user != null}">
 				 <input type="hidden" name="id" class="idval" th:value="${session.user.userId}">
                  </th:block>

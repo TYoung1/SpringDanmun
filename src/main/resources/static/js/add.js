@@ -10,7 +10,7 @@ function chkid(){
 }
 
 function re() {
-        var checkboxes = document.getElementsByName("del");
+        var checkboxes = document.getElementsByName("deleteWord");
         for (var i = 0; i < checkboxes.length; i++) {
             if (checkboxes[i].checked) {
                 return true;
