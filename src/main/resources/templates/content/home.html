@@ -61,7 +61,8 @@
             </figure>
           </div>
         </div>
-        <th:block th:if="${session.user != null}">
+        <th:block th:if="${session.user != null }">
+          <th:block th:if="${session.user.grant < 1}">
           <div class="login">
               <form>
             <h2 th:text="${session.user.userName} + '님 환영합니다'"></h2>
@@ -72,11 +73,28 @@
             </ul>
             <div class="another">
               <div class="findid" onclick="location.href='/auth/logout'">로그아웃</div>
-              <div class="singup" onclick="location.href='quit.jsp'">회원탈퇴</div>
+              <div class="singup" onclick="location.href='/auth/withdrawal'">회원탈퇴</div>
             </div>
               </form>
-
           </div>
+          </th:block>
+          <th:block th:if="${session.user.grant > 0}">
+            <div class="login">
+              <form>
+                <h2 th:text="${session.user.userName} + '님 환영합니다'"></h2>
+                <ul>
+                  <li style="text-align:center;"><a href="myword">내 단어장</a></li>
+                  <li style="text-align:center;"><a th:href="@{/minigame}">머리식히러가기</a></li>
+                  <li>저장된 단어 : <span th:text="${count} + '개'"></span> </li>
+                </ul>
+                <div class="another">
+                  <div class="singup" onclick="location.href='/auth/logout'">로그아웃</div>
+                  <div class="findid" onclick="location.href='/admin'">회원관리</div>
+                  <div class="singup" onclick="location.href='/auth/withdrawal'">회원탈퇴</div>
+                </div>
+              </form>
+            </div>
+          </th:block>
         </th:block>
         <th:block th:if="${session.user == null}">
         <div class="login">
@@ -91,8 +109,8 @@
             <button type="submit" class="log">Login</button>
 
             <div class="another">
-              <div class="findid" onclick="location.href='find.jsp'">Find ID</div>
-              <div class="findpw" onclick="location.href='find.jsp'">Find PW</div>
+              <div class="findid" onclick="location.href='/auth/service'">Find ID</div>
+              <div class="findpw" onclick="location.href='/auth/service'">Find PW</div>
               <div class="singup" onclick="location.href='/auth/signup'">Sign up</div>
             </div>
           </form>

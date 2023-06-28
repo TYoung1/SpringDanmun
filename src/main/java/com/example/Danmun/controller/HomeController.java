@@ -82,6 +82,9 @@ public class HomeController {
     @GetMapping("/myword")
         public String myword(@ModelAttribute("message") String message,Model model, @PageableDefault(page = 0, size = 10, direction = Sort.Direction.DESC) Pageable pageable,HttpSession session){
         User user = (User) session.getAttribute("user");
+        if(user == null )
+            return "redirect:/home";
+
         String userid = user.getUserId();
         Page<Word> list=homeService.myList(userid,pageable);
         int nowPag = list.getPageable().getPageNumber() + 1;

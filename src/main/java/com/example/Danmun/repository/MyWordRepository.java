@@ -24,6 +24,11 @@ public interface MyWordRepository extends JpaRepository<MyWord,Long> {
     @Modifying
     public void deleteByUserIdAndSeqIn(String userId, List<Integer> wordSeqList);
 
+
+    @Transactional
+    @Modifying
+    public void deleteByUserId(String userId);
+
     @Transactional
     @Modifying
     @Query(value = "insert into myword (_userid,_seq) values(?1,?2)",nativeQuery = true)

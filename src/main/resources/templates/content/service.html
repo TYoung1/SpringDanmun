@@ -19,7 +19,7 @@
     <div class="form">
       <div class="left">
         <h2>아이디 찾기</h2>
-        <form action="/findid" method="post">
+        <form action="findid" method="post">
           <label>이름입력</label><br>
           <input type="text" name ="userName"><br>
           <label>나이입력</label><br>
@@ -27,7 +27,10 @@
 
           <button type="submit">찾기</button>
         </form>
-        <h2 class="result" th:text="아이디 = +'${userid}"></h2>
+
+        <th:block th:if="${find !=null && find!=''}">
+          <h2 class="result" th:text="'아이디 = ' + ${find}"></h2>
+        </th:block>
       </div>
       <div class="right">
         <h2>비밀번호 찾기</h2>
@@ -40,7 +43,9 @@
           <input type="text" name ="userAge"><br>
           <button type="submit">찾기</button>
         </form>
-        <h2 class="result" th:text="새비밀번호 = + '${userpw}"></h2>
+        <th:block th:if="${find2 !=null && find2!=''}">
+        <h2 class="result" th:text="'새비밀번호 = '+ ${find2}"></h2>
+        </th:block>
       </div>
     </div>
   </div>

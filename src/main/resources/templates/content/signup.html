@@ -6,6 +6,7 @@
 <th:block layout:fragment="head">
 <title>회원가입</title>
 <link th:href="@{/css/signup.css}" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </th:block>
 <body>
 <script>
@@ -19,8 +20,11 @@
         success: function(result) {
         	if (result.trim() === "false") {
         	      alert("사용 가능한 아이디입니다.");
-        	    } else {
+        	      document.getElementById("existsResult").value = "false";
+        	    }
+        	     else {
         	      alert("사용 불가능한 아이디입니다.");
+        	      document.getElementById("existsResult").value = "true";
         	    }
         },
         error: function() {
@@ -33,6 +37,7 @@
 <script th:src="@{/js/input_info.js}" src="/js/input_info.js"></script>
 
 <th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block>
+<input type="hidden" id="existsResult" th:value="d">
 <div class="main">
     <div class="wrap">
         <div class="sign_box">
@@ -70,5 +75,6 @@
         </div>
     </div>
 </div>
+<script th:src="@{/js/chk.js}"></script>
 </body>
 </html>

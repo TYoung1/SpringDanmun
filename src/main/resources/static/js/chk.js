@@ -21,6 +21,8 @@ let pw = document.getElementById("user_pw").value;
     }
 }
 
+//중복체크
+
 // 회원가입
 let idcheck = /^[a-z0-9]+$/
 let pwcheck = /^[a-zA-Z0-9]+$/
@@ -31,7 +33,7 @@ function chkall(){
 	let nameval = document.getElementById("nameval").value;
 	let ageval = document.getElementById("ageval").value;
 	let genval = document.getElementById("genval").value;
-	
+	let exist = document.getElementById("existsResult").value;
 	let id = document.getElementById("id_inner");
 	let pw = document.getElementById("pw_inner");
 	let chk = document.getElementById("chk_inner");
@@ -74,6 +76,11 @@ function chkall(){
 	}else{
 		gender.innerHTML="";
 	}
+	if(exist != "false"){
+	    alert("중복체크를 해주세요");
+	    return false;
+	}
+
 	return true;
 }
 
