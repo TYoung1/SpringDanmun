@@ -42,6 +42,7 @@ public class AuthService {
             userRepository.save(user);
         } catch (Exception e) {
             e.printStackTrace();
+            return ResponseDto.setFailed("회원가입 중 오류가 발생");
         }
         return ResponseDto.setSuccess("회원가입 성공",null);
     }
